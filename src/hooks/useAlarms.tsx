@@ -7,12 +7,21 @@ export function useAlarm() {
     const addAlarm= (alarm: IAlarm) =>{
         setAlarms([...alarms, alarm])
     }
+    const sortAlarms = (alarms: IAlarm[], sortBy: "time" | "title") =>{
+        return [...alarms].sort((a, b) =>{
+            if (sortBy === "time") {
+                return a.time.localeCompare(b.time);
+            }else {
+                return a.title.localeCompare(b.title);
+            }
+        })
+    }
 
     useEffect(() => {
         localStorage.setItem("alarms", JSON.stringify(alarms))
     }, [alarms])
 
     return {
-        alarms, addAlarm
+        alarms, addAlarm, sortAlarms
     }
 }
