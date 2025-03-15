@@ -7,10 +7,11 @@ import { FiBell, FiBellOff } from "react-icons/fi"
 
 interface AlarmListProps {
     alarms: IAlarm[],
-    sortAlarms: (alarms: IAlarm[], sortBy: "time" | "title") => IAlarm[]
+    sortAlarms: (alarms: IAlarm[], sortBy: "time" | "title") => IAlarm[],
+    onDelete: (id: string) => void
 }
 
-export function AlarmList({ alarms, sortAlarms }: AlarmListProps) {
+export function AlarmList({ alarms, sortAlarms, onDelete }: AlarmListProps) {
     const [sortBy, setSortBy]= useState<"time" | "title">("time");
     const sortedAlarms= sortAlarms(alarms, sortBy)
 
@@ -50,7 +51,7 @@ export function AlarmList({ alarms, sortAlarms }: AlarmListProps) {
                                     <button className="p-3 rounded-lg border bg-white hover:bg-gray-200">
                                         <FaRegEdit/>
                                     </button>
-                                    <button className="p-3 rounded-lg border bg-white hover:bg-gray-200">
+                                    <button onClick={() => onDelete(alarm.id)} className="p-3 rounded-lg border bg-white hover:bg-gray-200">
                                         <FaRegTrashCan/>
                                     </button>
                                 </td>
