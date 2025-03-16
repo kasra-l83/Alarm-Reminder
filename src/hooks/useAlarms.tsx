@@ -5,6 +5,7 @@ export function useAlarm() {
     const [alarms, setAlarms] = useState<IAlarm[]>(() =>{
         return JSON.parse(localStorage.getItem("alarms") as string) || []
     })
+    const [isAlarmModalOpen] = useState<boolean>(false)
 
     const addAlarm= (alarm: IAlarm) =>{
         setAlarms([...alarms, alarm])
@@ -16,6 +17,9 @@ export function useAlarm() {
             }else return a.title.localeCompare(b.title);
         })
     }
+    const updateAlarm= (updatedAlarm: IAlarm) =>{
+        setAlarms(alarms.map((alarm) => (alarm.id=== updatedAlarm.id ? updatedAlarm : alarm)))
+    }
     const deleteAlarm= (id: string) =>{
         setAlarms(alarms.filter((alarm) => alarm.id !== id))
     }
@@ -25,6 +29,6 @@ export function useAlarm() {
     }, [alarms])
 
     return {
-        alarms, addAlarm, sortAlarms, deleteAlarm
+        alarms, addAlarm, sortAlarms, isAlarmModalOpen, updateAlarm, deleteAlarm
     }
 }
