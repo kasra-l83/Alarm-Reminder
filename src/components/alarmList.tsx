@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { IAlarm } from "../types/alarm"
+import type { IAlarm } from "../types/alarm"
 import { FaRegEdit } from "react-icons/fa"
 import { FaRegTrashCan } from "react-icons/fa6"
 import { FiBell, FiBellOff } from "react-icons/fi"

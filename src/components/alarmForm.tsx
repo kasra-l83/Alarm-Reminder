@@ -1,4 +1,4 @@
-import { IAlarm } from "../types/alarm"
+import type { IAlarm } from "../types/alarm"
 import { FormEvent, useState } from "react"
 
 interface AlarmFormProps {
